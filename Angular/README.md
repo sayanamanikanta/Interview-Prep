@@ -5,9 +5,23 @@
 
 | No. | Questions |
 |---- | ---------
-|1 | [Hoisting?](#hoisting)|
-|2 | [Closure?](#closure)|
-|3 | [Ngrx?](#ngrx)|
+|1  | [Hoisting?](#hoisting)|
+|2  | [Closure?](#closure)|
+|3  | [Ngrx?](#ngrx)|
+|4  | [Cloning Arrays](#cloning-arrays)|
+|5  | [Cloning Objects](#cloning-objects)|
+|6  | [ES6 Features](#es6-features)|
+|7  | [Combine scripts in angular.json](#combine-scripts-in-angular.json)|
+|8  | [Life cycle hooks?](#life-cycle-hooks)|
+|9  | [Bootstrapping?](#bootstrapping)|
+|10 | [Authguard?](#authguard)|
+|11 | [MergeMap?](#mergemap)|
+|12 | [SwitchMap?](#switchmap)|
+|13 | [Map, Reduce and Filter?](#map,-reduce-and-filter)|
+|14 | [View Encapsulation?](#view-encapsulation)|
+|15 | [Async await and Promise?](#async-await-and-promise)|
+|16 | [Sharing data between Components?](#sharing-data-between-components)|
+
 
 
 --------
@@ -182,30 +196,219 @@
     The Angular SwitchMap maps each value from the source observable into an inner observable, subscribes to it, and then starts emitting the values from it. It creates a new inner observable for every value it receives from the Source
     **[⬆ Back to Top](#table-of-contents)**
     
-13. ### map, reduce and filter
-    Map operator takes an observable source as input. It applies a project function to each of the values emitted by the source observable and transforms it into a new value. It then emits the new value to the subscribers
+13. ### Map, Reduce and Filter
 
-    ```
-    import { map } from 'rxjs/operators'
+    1. **Map:**
+        Map operator takes an observable source as input. It applies a project function to each of the values emitted by the source observable and transforms it into a new value. It then emits the new value to the subscribers
 
-    srcArray = from([1, 2, 3, 4]);
+        ```
+        import { map } from 'rxjs/operators'
 
-    multiplyBy2() {
-        this.srcArray
-        .pipe(map(val => { return val * 2}))
-        .subscribe(val => { console.log(val)})
-    }
+        srcArray = from([1, 2, 3, 4]);
+
+        multiplyBy2() {
+            this.srcArray
+            .pipe(map(val => { return val * 2}))
+            .subscribe(val => { console.log(val)})
+        }
+        
+        ```
+    2. **Reduce:**
+        The reduce() method reduces an array of values down to just one value. To get the output value, it runs a reducer function on each element of the array
+
+        ```
+        const numbers = [1, 2, 3, 4];
+        const sum = numbers.reduce(function (result, item) {
+            return result + item;
+        }, 0);
+
+        console.log(sum); // 10
+        ```
+
+    3. **Filter:**
+        The filter() method takes each element in an array and it applies a conditional statement against it. If this conditional returns true, the element gets pushed to the output array. If the condition returns false, the element does not get pushed to the output array
+
+        ```
+        const numbers = [1, 2, 3, 4];
+        const evens = numbers.filter(item => item % 2 === 0);
+        console.log(evens); // [2, 4]
+        ```
     
+    **[⬆ Back to Top](#table-of-contents)**
+
+14. ### View Encapsulation
+    In Angular, a component's styles can be encapsulated within the component's host element so that they don't affect the rest of the application.<br >
+
+    1. **ViewEncapsulation.ShadowDom:** Angular uses the browser's built-in Shadow DOM API to enclose the component's view inside a ShadowRoot (used as the component's host element) and apply the provided styles in an isolated manner
+    2. **ViewEncapsulation.Emulated:** Angular modifies the component's CSS selectors so that they are only applied to the component's view and do not affect other elements in the application (emulating Shadow DOM behavior).
+    3. **ViewEncapsulation.None:** Angular does not apply any sort of view encapsulation meaning that any styles specified for the component are actually globally applied and can affect any HTML element present within the application. This mode is essentially the same as including the styles into the HTML itself
+
+    ```
+    @Component({
+        selector: 'app-encapsulation',
+        template: ``,
+        styles: [],
+        encapsulation: ViewEncapsulation.Emulated, 
+        //encapsulation: ViewEncapsulation.None, 
+        //encapsulation: ViewEncapsulation.ShadowDom,
+    })
+    ```
+
+    **[⬆ Back to Top](#table-of-contents)**
+
+15. ### Async await and Promise
+    1. **Async-Await:** When an async function is called, it returns a Promise. When the async function returns a value, the Promise will be resolved with the returned value. When the async function throws an exception or some value, the Promise will be rejected with the thrown value
+    ```
+    async getPrice(currency: string): Promise<any> { 
+        return this.httpClient.get<any>("API URL").toPromise(); 
+    } 
+
+    this.price = await this.getPrice(this.currency); 
+    ```
+
+    2. **Promise:**
+    
+    #### Syntax:
+    ```
+    var promise = new Promise((resolve, reject) => {
+    });
+    ```
+
+    #### Ex:
+    ```
+    var promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+            console.log("Async Work Complete");
+            resolve();
+        }, 1000);
+    });
     ```
     **[⬆ Back to Top](#table-of-contents)**
 
-9. ### Bootstrapping
-    **[⬆ Back to Top](#table-of-contents)**
+16. ### Sharing data between Components
+    There are five ways to share data between components
+    1. **Parent to Child: Sharing Data via Input**
+        This is probably the most common and straightforward method of sharing data. It works by using the @Input() decorator to allow data to be passed via the template
 
-9. ### Bootstrapping
-    **[⬆ Back to Top](#table-of-contents)**
+        ##### parent.component.ts
+        ```
+        import { Component } from '@angular/core';
+        @Component({
+            selector: 'app-parent',
+            template: `
+                <app-child [childMessage]="parentMessage"></app-child>
+            `,
+            styleUrls: ['./parent.component.css']
+        })
+        export class ParentComponent{
+            parentMessage = "message from parent"
+            constructor() { }
+        }
+        ```
 
-9. ### Bootstrapping
+        #### child.component.ts
+        ```
+        import { Component, Input } from '@angular/core';
+        @Component({
+            selector: 'app-child',
+            template: `
+                Say {{ message }}
+            `,
+            styleUrls: ['./child.component.css']
+        })
+        export class ChildComponent {
+            @Input() childMessage: string;
+            constructor() { }
+        }
+        ```
+
+    2. **Child to Parent: Sharing Data via ViewChild**
+        ViewChild allows a one component to be injected into another, giving the parent access to its attributes and functions. One caveat, however, is that child won’t be available until after the view has been initialized. This means we need to implement the AfterViewInit lifecycle hook to receive the data from the child
+
+        #### parent.component.ts
+        ```
+        import { Component, ViewChild, AfterViewInit } from '@angular/core';
+        import { ChildComponent } from "../child/child.component";
+        @Component({
+            selector: 'app-parent',
+            template: `
+                Message: {{ message }}
+                <app-child></app-child>
+            `,
+            styleUrls: ['./parent.component.css']
+        })
+        export class ParentComponent implements AfterViewInit {
+            @ViewChild(ChildComponent) child;
+            constructor() { }
+            message:string;
+            ngAfterViewInit() {
+                this.message = this.child.message
+            }
+        }
+        ```
+
+        #### child.component.ts
+        ```
+        import { Component} from '@angular/core';
+        @Component({
+            selector: 'app-child',
+            template: `
+            `,
+            styleUrls: ['./child.component.css']
+        })
+        export class ChildComponent {
+            message = 'Hola Mundo!';
+            constructor() { }
+        }
+        ```
+
+    3. **Child to Parent: Sharing Data via Output() and EventEmitter**
+        Another way to share data is to emit data from the child, which can be listened to by the parent. This approach is ideal when you want to share data changes that occur on things like button clicks, form entires, and other user events
+
+        #### parent.component.ts
+        ```
+        import { Component } from '@angular/core';
+        @Component({
+            selector: 'app-parent',
+            template: `
+                Message: {{message}}
+                <app-child (messageEvent)="receiveMessage($event)"></app-child>
+            `,
+            styleUrls: ['./parent.component.css']
+        })
+        export class ParentComponent {
+            constructor() { }
+            message:string;
+            receiveMessage($event) {
+                this.message = $event
+            }
+        }
+        ```
+
+        #### child.component.ts
+        ```
+        import { Component, Output, EventEmitter } from '@angular/core';
+        @Component({
+            selector: 'app-child',
+            template: `
+                <button (click)="sendMessage()">Send Message</button>
+            `,
+            styleUrls: ['./child.component.css']
+        })
+        export class ChildComponent {
+            message: string = "Hola Mundo!"
+            @Output() messageEvent = new EventEmitter<string>();
+            constructor() { }
+            sendMessage() {
+                this.messageEvent.emit(this.message)
+            }
+        }
+
+        ```
+
+    4. **Unrelated Components: Sharing Data with a Service**
+        
+
     **[⬆ Back to Top](#table-of-contents)**
 
 9. ### Bootstrapping

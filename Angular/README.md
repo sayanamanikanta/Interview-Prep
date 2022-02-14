@@ -17,10 +17,18 @@
 |10 | [Authguard?](#authguard)|
 |11 | [MergeMap?](#mergemap)|
 |12 | [SwitchMap?](#switchmap)|
-|13 | [Map, Reduce and Filter?](#map,-reduce-and-filter)|
+|13 | [Map, Reduce and Filter?](#map-reduce-and-filter)|
 |14 | [View Encapsulation?](#view-encapsulation)|
 |15 | [Async await and Promise?](#async-await-and-promise)|
 |16 | [Sharing data between Components?](#sharing-data-between-components)|
+|17 | [Directives](#directives)|
+|18 | [Lazy loading](#lazy-loading)|
+|19 | [Observable vs Promises](#observable-vs-promises)|
+|20 | [How to upgrade angular version](#how-to-upgrade-angular-version)|
+|21 | [How you can apply color to the table rows based on the their status(either true/false) with css](#how-you-can-apply-color-to-the-table-rows-based-on-the-their-status(either-true/false)-with-css)|
+|22 | [JIT and AOT](#jit-and-aot)|
+|23 | [Observable](#observable)|
+|23 | [Memory leak](#memory-leak)|
 
 
 
@@ -196,7 +204,7 @@
     The Angular SwitchMap maps each value from the source observable into an inner observable, subscribes to it, and then starts emitting the values from it. It creates a new inner observable for every value it receives from the Source
     **[⬆ Back to Top](#table-of-contents)**
     
-13. ### Map, Reduce and Filter
+13. ### Map Reduce and Filter
 
     1. **Map:**
         Map operator takes an observable source as input. It applies a project function to each of the values emitted by the source observable and transforms it into a new value. It then emits the new value to the subscribers
@@ -411,6 +419,149 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
+17. ### Directives
+    Directives in Angular is a js class, which is declared as @directive. We have 3 directives in Angular. 
+    1. **Component Directives:** These form the main class having details of how the component should be processed, instantiated and used at runtime
+    2. **Structural Directives:** A structure directive basically deals with manipulating the dom elements. Structural directives have a * sign before the directive. For example, *ngIf and *ngFor
+    3. **Attribute Directives:** Attribute directives deal with changing the look and behavior of the dom element. You can create your own directives as shown below
+
+    ##### Creating Directive:
+    ```
+    Syntax: ng g directive nameofthedirective
+
+    Eg: ng g directive changeText
+    ```
+
+    ##### Usage
+    ```
+    change-text.directive.ts:
+
+    import { Directive, ElementRef} from '@angular/core';
+        @Directive({
+            selector: '[changeText]'
+        })
+
+        export class ChangeTextDirective {
+            constructor(Element: ElementRef) {
+                console.log(Element);
+                Element.nativeElement.innerText="Text is changed by changeText Directive. ";
+            }
+        }
+
+
+    ```
+
+    ```
+    app.component.html
+
+    <span changeText >Welcome to {{title}}.</span>
+    ```
+    **[⬆ Back to Top](#table-of-contents)**
+
+18. ### Lazy loading
+    Lazy loading is a technology of angular that allows you to load JavaScript components when a specific route is activated. It improves application load time speed by splitting the application into many bundles. When the user navigates by the app, bundles are loaded as needed
+    <br>
+    Lazy loading helps to keep the bundle size small, which helps reduce load times <br/>
+
+    **The main properties are:**
+    1. **import:** Components of this module are used with Array with other modules
+    2. **Declarations:** It receives an array of the components
+    3. **Export:** Defines an array of components, directives, and pipes used by other modules
+    4. **Provider:** Declares services that are available to the entire application if it is a root module
+
+    **app-routing.module.ts**
+    ```
+    {  
+        path: 'lazy-loading',  
+        load children: () => import('./lazy-loading/lazy-loading.module')  
+        .then(m => m.LazyLoadingModule)  
+    },  
+    ```
+
+    **[⬆ Back to Top](#table-of-contents)**
+
+19. ### Observable vs Promises
+    Promises and Observables provide us with abstractions that help us deal with the asynchronous nature of our applications<br>
+    **Promise**
+        A Promise handles a single event when an async operation completes or fails
+    **Observable**
+        An Observable is like a Stream (in many languages) and allows to pass zero or more events where the callback is called for each event
+    **[⬆ Back to Top](#table-of-contents)**
+
+20. ### How to upgrade angular version
+    In order to update the angular-cli package installed globally in your system, you need to run
+    ```
+    npm uninstall -g @angular/cli
+    npm install -g @angular/cli@latest
+
+                    OR
+    ng update @angular/cli
+    ```
+
+    **[⬆ Back to Top](#table-of-contents)**
+
+21. ### How you can apply color to the table rows based on the their status(either true/false) with css
+    ```
+    HTML::
+    <span [ngClass]="status == true ? 'color1' : 'color2'"> change color</span>
+
+    CSS::
+    .color1{
+        color: red;
+    }
+
+    .color2{
+        color: green;
+    }
+    ```
+    **[⬆ Back to Top](#table-of-contents)**
+
+22. ### JIT and AOT Compiler in Angular
+    An angular application mainly consists of HTML templates, their components which include various TypeScript files. There are some unit testing and configuration file. Whenever we run over an application, the browser cannot understand the code directly hence we have to compile our code
+
+    1. **AOT (Ahead of Time):**
+        In simple words, when you serve/build your angular application, the Ahead of Time compiler converts your code during the build time before your browser downloads and runs that code. From Angular 9, by default compiling option is set to true for ahead of time compiler
+        **Why should you use the Ahead of Time compiler ?**
+        * When you are using Ahead of Time Compiler, compilation only happens once, while you build your project
+        * We don’t have to ship the HTML templates and the Angular compiler whenever we enter a new component
+        * It can minimize the size of your application
+        * The browser does not need to compile the code in run time, it can directly render the application immediately, without waiting to compile the app first so, it provides quicker component rendering
+        * The Ahead of time compiler detects template error earlier. It detects and reports template binding errors during the build steps before users can see them
+        * AOT provides better security. It compiles HTML components and templates into JavaScript files long before they are served into the client display. So, there are no templates to read and no risky client-side HTML or JavaScript evaluation. This will reduce the chances of injections attacks
+
+    2. **JIT (Just in Time):**
+        Just in time compiler provides compilation during the execution of the program at a run time before execution. In simple words, code get compiles when it’s needed, not at the build time
+        **Why and When Should you use Just In Time Compiler ?**
+        * Just in time compiler compiles each file separately and it’s mostly compiled in the browser. You don’t have to build your project again after changing your code
+        * Most compiling is done on the browser side, so it will take less compiling time
+        * If you have a big project or a situation where some of your components don’t come in use most of the time then you should use the Just in time compiler
+        * Just in Time compiler is best when your application is in local development
+
+    **[⬆ Back to Top](#table-of-contents)**
+
+23. ### Observable
+    Angular makes use of observables as an interface to handle a variety of common asynchronous operations
+
+    **[⬆ Back to Top](#table-of-contents)**
+
+24. ### Memory Leak 
+    Memory leak is a resource leak that takes place when a computer program/application incorrectly manages memory allocations where memory that are no longer needed are not being properly released
+
+    A memory leak is one of the worst types of issues you can have. It’s hard to find, hard to debug, and often hard to solve
+    **[⬆ Back to Top](#table-of-contents)**
+
+9. ### Bootstrapping
+    **[⬆ Back to Top](#table-of-contents)**
+
+9. ### Bootstrapping
+    **[⬆ Back to Top](#table-of-contents)**
+
+9. ### Bootstrapping
+    **[⬆ Back to Top](#table-of-contents)**
+
+9. ### Bootstrapping
+    **[⬆ Back to Top](#table-of-contents)**
+
 9. ### Bootstrapping
     **[⬆ Back to Top](#table-of-contents)**
 
@@ -428,3 +579,55 @@
 
 9. ### Bootstrapping
     **[⬆ Back to Top](#table-of-contents)**
+
+9. ### Bootstrapping
+    **[⬆ Back to Top](#table-of-contents)**
+
+9. ### Bootstrapping
+    **[⬆ Back to Top](#table-of-contents)**
+
+9. ### Bootstrapping
+    **[⬆ Back to Top](#table-of-contents)**
+
+9. ### Bootstrapping
+    **[⬆ Back to Top](#table-of-contents)**
+
+9. ### Bootstrapping
+    **[⬆ Back to Top](#table-of-contents)**
+
+9. ### Bootstrapping
+    **[⬆ Back to Top](#table-of-contents)**
+
+9. ### Bootstrapping
+    **[⬆ Back to Top](#table-of-contents)**
+
+9. ### Bootstrapping
+    **[⬆ Back to Top](#table-of-contents)**
+
+9. ### Bootstrapping
+    **[⬆ Back to Top](#table-of-contents)**
+
+9. ### Bootstrapping
+    **[⬆ Back to Top](#table-of-contents)**
+
+9. ### Bootstrapping
+    **[⬆ Back to Top](#table-of-contents)**
+
+9. ### Bootstrapping
+    **[⬆ Back to Top](#table-of-contents)**
+
+9. ### Bootstrapping
+    **[⬆ Back to Top](#table-of-contents)**
+
+9. ### Bootstrapping
+    **[⬆ Back to Top](#table-of-contents)**
+
+9. ### Bootstrapping
+    **[⬆ Back to Top](#table-of-contents)**
+
+9. ### Bootstrapping
+    **[⬆ Back to Top](#table-of-contents)**
+
+9. ### Bootstrapping
+    **[⬆ Back to Top](#table-of-contents)**
+    

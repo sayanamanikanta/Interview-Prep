@@ -37,6 +37,25 @@
 |30 | [Pseudo clases](#pseudo-clases)|
 |31 | [Positions](#positions)|
 |32 | [Angular 10 Main features](#angular-10-Main-features)|
+|33 | [Elements](#elements)|
+|34 | [Custom Pipes](#custom-pipes)|
+|35 | [Route guards](#route-guards)|
+|36 | [Difference between service directive and module](#difference-between-service-directive-and-module)|
+|37 | [Use of package.json](#use-of-packagejson)|
+|38 | [Angular architecture](#angular-architecture)|
+|39 | [Wild card routing](#wild-card-routing)|
+|40 | [Observables](#observables)|
+|41 | [Error handling](#error-handling)|
+|42 | [What Is component](#what-is-component)|
+|43 | [Interceptors](#interceptors)|
+|44 | [Pass headers in request](#pass-headers-in-request)|
+|45 | [Is browser understands the typescript directly](#is-browser-understands-the-typescript-directly)|
+|46 | [Reactive forms](#reactive-forms)|
+|47 | [Template-driven forms](#template-driven-forms)|
+|48 | [Auth guard](#auth-guard)|
+|49 | [Routing in angular](#routing-in-angular)|
+|50 | [Where we need to include popup component in app.module.ts](#where-we-need-to-include-popup-component-in-app.module.ts)|
+
 
 
 
@@ -1021,24 +1040,170 @@
     **[⬆ Back to Top](#table-of-contents)**
 
 45. ### Is browser understands the typescript directly
-    NO
+    Typescript cannot be run or understood in any browser. So, Typescript is compiled to Javascript (which browsers can understand). Typescript can use all ES6 features and during the compilation they will be converted to Target compile options like ES5
     **[⬆ Back to Top](#table-of-contents)**
 
-9. ### Bootstrapping
+46. ### Reactive forms
+    * **Reactive forms:** Reactive forms are forms where we define the structure of the form in the component class. I,e we create the form model with Form Groups, Form Controls, and Form Arrays. We also define the validation rules in the component class. Then, we bind it to the HTML form in the template
+    #### How to use Reactive Forms
+    1. **Import ReactiveFormsModule**
+        To work with Reactive forms, we must import the ReactiveFormsModule. We usually import it in root module or in a shared module
+        ```ts
+        //AppModel
+        import { ReactiveFormsModule } from '@angular/forms';
+
+        @NgModule({
+            declarations: [
+                AppComponent
+            ],
+            imports: [
+                BrowserModule,
+                AppRoutingModule,
+                ReactiveFormsModule
+            ],
+            providers: [],
+            bootstrap: [AppComponent]
+        })
+        ```
+    2. **Create Form Model in component class using Form Group, Form Control & Form Arrays**
+        In the template-driven approach, we used ngModel & ngModelGroup directive on the HTML elements. The FormsModule created the FormGroup & FormControl instances from the template. This happens behind the scene
+        In Reactive Forms approach, It is our responsibility to build the Model using FormGroup, FormControl and FormArray
+        ```ts
+        import { FormGroup, FormControl, Validators } from '@angular/forms'
+
+        contactForm = new FormGroup({
+            firstname: new FormControl(),
+            lastname: new FormControl(),
+            email: new FormControl(),
+        })
+
+        contactFormWithValidation = new FormGroup({
+            firstname: new FormControl('', [Validators.required,Validators.minLength(10)]),
+            lastname: new FormControl(),
+            email: new FormControl(),
+        })
+        ```
+    3. **Create the HTML Form resembling the Form Model**
+        ```html
+        <form>
+            <p>
+                <label for="firstname">First Name </label>
+                <input type="text" id="firstname" name="firstname">
+            </p>
+            <p>
+                <label for="lastname">Last Name </label>
+                <input type="text" id="lastname" name="lastname">
+            </p>
+            <p>
+                <label for="email">Email Id </label>
+                <input type="text" id="email" name="email">
+            </p>
+            <p>
+                <button type="submit">Submit</button>
+            </p>
+        </form>
+        ```
+    4. **Bind the HTML Form to the Form Model**
+        ```html
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+            <p>
+                <label for="firstname">First Name </label>
+                <input type="text" id="firstname" name="firstname" formControlName="firstname">
+            </p>
+            <p>
+                <label for="lastname">Last Name </label>
+                <input type="text" id="lastname" name="lastname" formControlName="lastname">
+            </p>
+            <p>
+                <label for="email">Email Id </label>
+                <input type="text" id="email" name="email" formControlName="email">
+            </p>
+            <p>
+                <button type="submit">Submit</button>
+            </p>
+        </form>
+        ```
+
+        ```ts
+        onSubmit() {
+            console.log(this.contactForm.value);
+        }
+        ```
+
     **[⬆ Back to Top](#table-of-contents)**
 
-9. ### Bootstrapping
+47. ###  Template-driven forms
+    In Template Driven Forms we specify behaviors/validations using directives and attributes in our template and let it work behind the scenes. All things happen in Templates hence very little code is required in the component class. This is different from the reactive forms, where we define the logic and controls in the component class
+
+    1. **Import FormsModule**
+    To work with Template-driven forms, we must import the FormsModule. We usually import it in root module or in a shared module.
+    ```ts
+    //app.module.ts
+
+    import { FormsModule } from '@angular/forms';        //import FormsModule
+
+    @NgModule({
+        declarations: [
+            AppComponent
+        ],
+        imports: [
+            BrowserModule,
+            AppRoutingModule,
+            FormsModule              
+        ],
+        providers: [],
+        bootstrap: [AppComponent]
+    })
+    ```
+    2. **HTML Form**
+        ```html
+        <form>
+            <p>
+                <label for="firstname">First Name </label>
+                <input type="text" id="firstname" name="firstname">
+            </p>
+            <p>
+                <label for="lastname">Last Name </label>
+                <input type="text" id="lastname" name="lastname">
+            </p>
+            <p>
+                <label for="email">Email Id </label>
+                <input type="text" id="email" name="email">
+            </p>
+            <p>
+                <button type="submit">Submit</button>
+            </p>
+        </form>
+        ```
+
     **[⬆ Back to Top](#table-of-contents)**
 
-9. ### Bootstrapping
+48. ### Auth guard
+    AuthGuard is used to protect the routes from unauthorized access in angular.
+    Auth guard provide lifecycle event called canActivate. The canActivate is like a constructor. It will be called before accessing the routes. The canActivate has to return true to access the page. If it returns false, we can not access the page
+    ```ts
+    { path: "create", component: PostCreateComponent, canActivate: [AuthGuard]}
+    ```
+    
     **[⬆ Back to Top](#table-of-contents)**
 
-9. ### Bootstrapping
-    **[⬆ Back to Top](#table-of-contents)**
-
-9. ### Bootstrapping
-    **[⬆ Back to Top](#table-of-contents)**
-
-9. ### Bootstrapping
+49. ### Routing in angular
+    Angular provides extensive set of navigation feature to accommodate simple scenario to complex scenario. The process of defining navigation element and the corresponding view is called Routing. Angular provides a separate module, RouterModule to set up the navigation in the Angular application
+    * **Creating routes**
+        ```ts
+        const routes: Routes = [
+            { path: 'about', component: AboutComponent },
+        ];
+        ```
+    * **Accessing routes**
+        * Include router-outlet tag in the root component template
+        ```html
+        <router-outlet></router-outlet>
+        ```
+        * Use routerLink and routerLinkActive property in the required place
+        ```html
+        <a routerLink="/about" routerLinkActive="active">First Component</a>
+        ```
+    
     **[⬆ Back to Top](#table-of-contents)**
     

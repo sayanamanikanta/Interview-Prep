@@ -561,6 +561,7 @@
 
 25. ### Pipes in angular
     Decorator that marks a class as pipe and supplies configuration metadata. Angular 4 provides some built-in pipes
+
     * Lowercasepipe ```{{title | uppercase}} // title```
     * Uppercasepipe ```{{title | lowercase}}    //  TITLE```
     * Datepipe ```{{todaydate | date:'d/M/y'}}  //  14/2/2022```
@@ -585,6 +586,8 @@
 
     Result: Mar, April, May, Jun
     ```
+
+    #### [Custom Pipes](#custom-pipes) See bellow for Custom Pipes
 
     **[⬆ Back to Top](#table-of-contents)**
 
@@ -724,43 +727,301 @@
         Angular 10 features typescript 3.9. As opposed to the previous version which supported typescript 3.6, 3.7 and even 3.8. Angular 10 also has deprecated the inclusion of ESM5 or FESM5 bundles which saves 119MB of download and install time while running yarn or npm install for Angular packages and libraries. any down leveling to support ES5 in this version will be done at the end of the build process
     **[⬆ Back to Top](#table-of-contents)**
 
-9. ### Bootstrapping
+33. ### Elements
+    Angular elements are Angular components packaged as custom elements (also called Web Components), a web standard for defining new HTML elements in a framework-agnostic way
+
     **[⬆ Back to Top](#table-of-contents)**
 
-9. ### Bootstrapping
+34. ### Custom Pipes
+    Angular also has the facility to create custom pipes. The general way to define a custom pipe is as follows
+
+    ```ts
+    import { Pipe, PipeTransform } from '@angular/core';  
+    @Pipe({name: 'Pipename'}) 
+
+    export class Pipeclass implements PipeTransform { 
+        transform(parameters): returntype { } 
+    }
+    ```
+
+    #### example:
+    1. First, create a file called multiplier.pipe.ts
+        ```ts
+        import { 
+            Pipe, 
+            PipeTransform 
+        } from '@angular/core';  
+
+        @Pipe ({ 
+            name: 'Multiplier' 
+        }) 
+
+        export class MultiplierPipe implements PipeTransform { 
+            transform(value: number, multiply: string): number { 
+                let mul = parseFloat(multiply); 
+                return mul * value 
+            } 
+        }
+        ```
+    2. Usage 
+        ```html
+        <p>Multiplier: {{2 | Multiplier: 10}}</p>
+        ```
+    3. Add MultiplierPipe declarations in *app.module.ts* file
+        ```ts
+        declarations: [AppComponent, MultiplierPipe],
+        ```
     **[⬆ Back to Top](#table-of-contents)**
 
-9. ### Bootstrapping
+35. ### Route guards
+    The Angular router’s navigation guards allow to grant or remove access to certain parts of the navigation. Another route guard, the CanDeactivate guard, even allows you to prevent a user from accidentally leaving a component with unsaved changes
+    Here are the 4 types of routing guards available
+    1. **CanActivate:** Controls if a route can be activated
+    2. **CanActivateChild:** Controls if children of a route can be activated
+    3. **CanLoad:** Controls if a route can even be loaded. This becomes useful for feature modules that are lazy-loaded. They won’t even load if the guard returns false
+    4. **CanDeactivate:** Controls if the user can leave a route. Note that this guard doesn’t prevent the user from closing the browser tab or navigating to a different address. It only prevents actions from within the application itself
+
+    #### can-activate-route.guard.ts
+    ```ts
+    import { Injectable } from '@angular/core';
+    import {
+        CanActivate,
+        ActivatedRouteSnapshot,
+        RouterStateSnapshot 
+    } from '@angular/router';
+    import { AuthService } from './auth.service';
+
+    @Injectable()
+    export class CanActivateRouteGuard implements CanActivate {
+    constructor(private auth: AuthService) {}
+    }
+    ```
+
+    #### app-routing.module.ts
+    ```ts
+    import { CanActivateRouteGuard } from './can-activate-route.guard';
+    const routes: Routes = [
+        { path: '', component: HomeComponent },
+        { path: 'dashboard',
+            component: DashboardComponent,
+            canActivate: [CanActivateRouteGuard]
+        }
+    ]
+    ```
+
     **[⬆ Back to Top](#table-of-contents)**
 
-9. ### Bootstrapping
+36. ### Difference between service directive and module
+    1. Modules
+        * provide a way to namespace/group services, directives, filters, configuration information and initialization code
+    2. Services
+        * are singletons, so there is only one instance of each service you define. As singletons, they are not affected by scopes, and hence can be accessed by (shared with) multiple views/controllers/directives/other services
+        * To use a service, dependency injection is required on the dependent (e.g., on the controller, or another service, or a directive).
+    3. Directives 
+        * are responsible for updating the DOM when the state of the model changes
+        * Directives allow you to "componentize HTML". Directives are often better than ng-include. E.g., when you start writing lots of HTML with mainly data-binding, refactor that HTML into (reusable) directives
     **[⬆ Back to Top](#table-of-contents)**
 
-9. ### Bootstrapping
+37. ### Use of package.json
+    Once you create new Angular application, you will see package.json file among the newly created files and folders. package.json file locates in project root and contains information about your web application. The main purpose of the file comes from its name package, so it'll contain the information about npm packages installed for the project.
+    Let's take a look at main sections in package.json file.
+    1. **Project Metadata:** 
+        Metadata contains information about your application
+        ```json
+        "name": "my-first-angular-app",
+        "version": "0.0.0",
+        "private": true,
+        ```
+    2. **Scripts:**
+        This section describes Node scripts you can run in your application. As the code sample uses Angular CLI, all scripts are calling it.
+        ```json
+        "scripts": {
+            "ng": "ng",
+            "start": "ng serve",
+            "build": "ng build",
+            "test": "ng test",
+            "lint": "ng lint",
+            "e2e": "ng e2e"
+        },
+        ```
+    3. **Dependencies:** 
+        The list of packages installed as dependencies for this project are required at runtime
+        ```json
+        "dependencies": {
+            "@angular/animations": "~8.0.1",
+            "@angular/common": "~8.0.1",
+            "@angular/compiler": "~8.0.1",
+            "@angular/core": "~8.0.1",
+            "@angular/forms": "~8.0.1",
+            "@angular/platform-browser": "~8.0.1",
+            "@angular/platform-browser-dynamic": "~8.0.1",
+            "@angular/router": "~8.0.1",
+            "rxjs": "~6.4.0",
+            "tslib": "^1.9.0",
+            "zone.js": "~0.9.1"
+        },
+        ```
+    4. **Development Dependencies:**
+        The list of packages that are required only for development. This packages are installed only on developer's machine and will not be run for production build
+        ```json
+        "devDependencies": {
+            "@angular-devkit/build-angular": "~0.800.0",
+            "@angular/cli": "~8.0.3",
+            "@angular/compiler-cli": "~8.0.1",
+            "@angular/language-service": "~8.0.1",
+            "@types/node": "~8.9.4",
+            "@types/jasmine": "~3.3.8",
+            "@types/jasminewd2": "~2.0.3",
+            "codelyzer": "^5.0.0",
+            "jasmine-core": "~3.4.0",
+            "jasmine-spec-reporter": "~4.2.1",
+            "karma": "~4.1.0",
+            "karma-chrome-launcher": "~2.2.0",
+            "karma-coverage-istanbul-reporter": "~2.0.1",
+            "karma-jasmine": "~2.0.1",
+            "karma-jasmine-html-reporter": "^1.4.0",
+            "protractor": "~5.4.0",
+            "ts-node": "~7.0.0",
+            "tslint": "~5.15.0",
+            "typescript": "~3.4.3"
+        }
+        ```
+
     **[⬆ Back to Top](#table-of-contents)**
 
-9. ### Bootstrapping
+38. ### Angular architecture
+    Angular is a platform and framework for building single-page client applications using HTML and TypeScript. Angular is written in TypeScript. It implements core and optional functionality as a set of TypeScript libraries that you import into your applications
+    The Eight main building blocks of an Angular application
+    1. **Modules:** Every Angular app has a root module, conventionally named AppModule, which provides the bootstrap mechanism that launches the application. An app typically contains many functional modules
+    2. **Components:** Every Angular project has at least one component, the root component and root component connects the component hierarchy with a page document object model (DOM). Each component defines the class that contains application data and logic, and it is associated with the HTML template that defines the view to be displayed in a target app.A component controls a patch of screen called a view
+        ```ts
+        // app.component.ts
+        @Component({
+            selector: 'app-root',
+            templateUrl: './app.component.html',
+            styleUrls: ['./app.component.css']
+        })
+        ```
+    3. **Templates:** The angular template combines the HTML with Angular markup that can modify HTML elements before they are displayed. Template directives provide program logic, and binding markup connects your application data and the DOM. There are two types of data binding
+        * **Event binding** lets your app respond to user input in the target environment by updating your application data
+        * **Property binding** lets you interpolate values that are computed from your application data into the HTML
+        ```html
+        <div style="text-align:center">
+        <h1>
+            {{2 | power: 5}}
+        </h1>
+        </div>
+        ```
+    4. **Metadata:** Metadata tells Angular how to process a class.It is used to decorate the class so that it can configure the expected behavior of a class. Decorators are the core concept when developing with Angular (versions 2 and above)
+        ```ts
+        // app.component.ts
+        @Component({
+            selector: 'app-root',
+            templateUrl: './app.component.html',
+            styleUrls: ['./app.component.css']
+        })
+        ```
+    5. **Data binding:** Data binding plays an important role in communication between a template and its component
+        * **From the Component to the DOM** 
+            Interpolation: {{ value }}: Interpolation adds the value of the property from the component
+            ```html
+            <p>Name: {{ student.name }}</p>
+            ```
+        * **Property binding: [property]=”value”**
+            With property binding, a value is passed from a component to a specified property, which can often be a simple html attribute
+            ```html
+            <input type="text" [value]="student.name" />
+            ```
+        * **Event binding: (Event)=”myFunction($event)”**
+            With Event binding, a value is passed from a child Component to Parent Component,which can often be a simple html attribute
+            ```html
+            <input type="text" (myEvent)="onClick($event)" />
+            ```
+        * **Two-Way binding: [(ngModel)]=”property”**
+            It is an important fourth form that combines property and event binding in a single notation, using the ngModel directive
+            ```html
+            <input [(ngModel)]="hero.name">
+            ```
+    6. **Directives:** An Angular component isn’t more than a directive with the template. When we say that components are the building blocks of Angular applications, we are saying that directives are the building blocks of Angular projects. Let us use built-in Angular directive like ngClass, which is a better example of the existing Angular attribute directive
+        [⬆ ReadHere](#directives)**
+    7. **Services:** For data or logic that isn’t associated with a specific view, and that you want to share across components, you create a service class. The @Injectable decorator immediately precedes the service class definition
+    8. **Dependency injection:** Dependency injection (DI) lets you keep your component classes lean and efficient. DI does not fetch data from a server, validate the user input, or log directly to the console instead they delegate such tasks to the services
     **[⬆ Back to Top](#table-of-contents)**
 
-9. ### Bootstrapping
+39. ### Wild card routing
+    The Wildcard Route is basically used in Angular Application to handle the invalid URLs. Whenever the user enter some invalid URL or if you have deleted some existing URL from your application, then by default 404 page not found error page is displayed. In such scenarios instead of showing the default error page, if you also show a custom error page and this is possible by using the Angular Wildcard Route
+    ```ts
+    const routes: Routes = [
+        {
+            path:'**', component:CustomerrorComponent
+        },
+        {
+            path:'', redirectTo:'Login',pathMatch:'full'
+        },
+    ]
+    ```
     **[⬆ Back to Top](#table-of-contents)**
 
-9. ### Bootstrapping
+40. ### Observables
+    Angular makes use of observables as an interface to handle a variety of common asynchronous operations. For example
+    * You can define custom events that send observable output data from a child to a parent component
+    * The HTTP module uses observables to handle AJAX requests and responses
+    * The Router and Forms modules use observables to listen for and respond to user-input events
     **[⬆ Back to Top](#table-of-contents)**
 
-9. ### Bootstrapping
+41. ### Error handling
+    Handling errors properly is essential in building a robust application in Angular. Error handlers provide an opportunity to present friendly information to the user and collect important data for development
+    An application that does not handle errors gracefully leaves its users confused and frustrated when the app suddenly breaks without explanation. Handling these errors correctly across an application greatly improves user experience
+    There are two types of error handling mechanism in Angular. One catches all the client side errors and the other one catches the HTTP Errors
+        * **HTTP Errors**
+            The HTTP Errors are thrown, when you send a HTTP Request using the HttpClient Module. The errors again falls into two categories. One is generated by the server like unauthorized user, session expired, Server down etc. The Other one is generated at the client side, while trying to generate the HTTP Request. These errors could be network error, error while generating the request etc
+        * **Client Side Errors**
+            All other errors thrown by the code falls into this category. These are handled by the **ErrorHandler** class, which is the default error handler for Angular
     **[⬆ Back to Top](#table-of-contents)**
 
-9. ### Bootstrapping
+42. ### What Is component
+    Components are the main building block for Angular applications. Each component consists of
+    * An HTML template that declares what renders on the page
+    * A Typescript class that defines behavior
+    * A CSS selector that defines how the component is used in a template
+    * Optionally, CSS styles applied to the template
+
+    #### Creating a component using the Angular CLI
+    Run the ```ng generate component <component-name>``` command, where ```<component-name>``` is the name of your new component
+    By default, this command creates the following
+    * A folder named after the component
+    * A component file, ```<component-name>.component.ts```
+    * A template file, ```<component-name>.component.html```
+    * A CSS file, ```<component-name>.component.css```
+    * A testing specification file, ```<component-name>.component.spec.ts```
+
+    #### Creating a component manually
+    Although the Angular CLI is the best way to create an Angular component, you can also create a component manually
+
     **[⬆ Back to Top](#table-of-contents)**
 
-9. ### Bootstrapping
+43. ### Interceptors
+    The Angular HTTP interceptors sit between our application and the backend. When the application makes a request, the interceptor catches the request before it is sent to the backend. By Intercepting requests, we will get access to request headers and the body. This enables us to transform the request before sending it to the Server
     **[⬆ Back to Top](#table-of-contents)**
 
-9. ### Bootstrapping
+44. ### Pass headers in request
+    HTTP Headers let the client and the server share additional information about the HTTP request or response. For example, we use the content-type header to indicate the media type of the resource like JSON, text, blob, etc. Another important header is where you send the bearer token using the Authorization header
+    We add HTTP Headers using the HttpHeaders helper class. It is passed as one of the arguments to the GET, POST, PUT, DELETE, PATCH & OPTIONS request
+
+    ```ts
+    import { HttpHeaders } from '@angular/common/http';
+
+    const headers= new HttpHeaders()
+        .set('content-type', 'application/json')
+        .set('Access-Control-Allow-Origin', '*');
+
+    //calling
+    this.httpClient.get("URL", { 'headers': headers })
+    ```
     **[⬆ Back to Top](#table-of-contents)**
 
-9. ### Bootstrapping
+45. ### Is browser understands the typescript directly
+    NO
     **[⬆ Back to Top](#table-of-contents)**
 
 9. ### Bootstrapping

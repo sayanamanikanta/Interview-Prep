@@ -54,7 +54,8 @@
 |47 | [Template-driven forms](#template-driven-forms)|
 |48 | [Auth guard](#auth-guard)|
 |49 | [Routing in angular](#routing-in-angular)|
-|50 | [Where we need to include popup component in app.module.ts](#where-we-need-to-include-popup-component-in-app.module.ts)|
+|50 | [Event loop in JavaScript](#event-loop-in-JavaScript)|
+|51 | [Let, Var and Const](#let-var-and-const)|
 
 
 
@@ -1207,3 +1208,54 @@
     
     **[⬆ Back to Top](#table-of-contents)**
     
+50. ### Event loop in JavaScript
+    The event loop is the secret behind JavaScript’s asynchronous programming. JS executes all operations on a single thread, but using a few smart data structures, it gives us the illusion of multi-threading. Let’s take a look at what happens on the back-end.
+    The call stack is responsible for keeping track of all the operations in line to be executed. Whenever a function is finished, it is popped from the stack
+    The event queue is responsible for sending new functions to the stack for processing. It follows the queue data structure to maintain the correct sequence in which all operations should be sent for execution
+    **[⬆ Back to Top](#table-of-contents)**
+
+51. ### Let, Var and Const
+    * **var** The var is the oldest keyword to declare a variable in JavaScript
+    The scope of the var keyword is the global or function scope. It means variables defined outside the function can be accessed globally, and variables defined inside a particular function can be accessed within the function
+    * **let** The let keyword is an improved version of the var keyword
+    The scope of a let variable is only block scoped. It can’t be accessible outside the particular block
+    * **const** The const keyword has all the properties that are the same as the let keyword, except the user cannot update it
+    When users declare a const variable, they need to initialize it, otherwise, it returns an error. The user cannot update the const variable once it is declared
+
+    | var | let | const |
+    | ------ | ------ | ------|
+    | Variables declared with var are in the function scope | Variables declared as let are in the block scope | Variables declared as const are in the block scope |
+    | Hosting is Allowed | Hosting is Not Allowed | Hosting is Not Allowed |
+    | Reassign the value Allowed | Reassign the value Allowed | var allows in Not Allowed |
+    | Redeclaration of the variable Allowed | Redeclaration of the variable Not Allowed | Redeclaration of the variable Not Allowed |
+    **[⬆ Back to Top](#table-of-contents)**
+
+1. ### Question
+    **[⬆ Back to Top](#table-of-contents)**
+
+1. ### Question
+    **[⬆ Back to Top](#table-of-contents)**
+
+1. ### Question
+    **[⬆ Back to Top](#table-of-contents)**
+
+1. ### Question
+    **[⬆ Back to Top](#table-of-contents)**
+
+1. ### Question
+    **[⬆ Back to Top](#table-of-contents)**
+
+1. ### Question
+    **[⬆ Back to Top](#table-of-contents)**
+
+1. ### Question
+    **[⬆ Back to Top](#table-of-contents)**
+
+1. ### Question
+    **[⬆ Back to Top](#table-of-contents)**
+
+1. ### Question
+    **[⬆ Back to Top](#table-of-contents)**
+    
+1. ### Question
+    **[⬆ Back to Top](#table-of-contents)**

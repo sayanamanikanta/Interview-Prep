@@ -748,7 +748,8 @@
     **[⬆ Back to Top](#table-of-contents)**
 
 33. ### Elements
-    Angular elements are Angular components packaged as custom elements (also called Web Components), a web standard for defining new HTML elements in a framework-agnostic way
+    The Angular Elements package (@angular/elements) allows you to create native custom elements and author web components with Angular<br>
+    The @angular/elements package provides a createCustomElement() API that can be used to transform Angular Components to native Custom Elements
 
     **[⬆ Back to Top](#table-of-contents)**
 
@@ -965,7 +966,7 @@
     6. **Directives:** An Angular component isn’t more than a directive with the template. When we say that components are the building blocks of Angular applications, we are saying that directives are the building blocks of Angular projects. Let us use built-in Angular directive like ngClass, which is a better example of the existing Angular attribute directive
         [⬆ ReadHere](#directives)**
     7. **Services:** For data or logic that isn’t associated with a specific view, and that you want to share across components, you create a service class. The @Injectable decorator immediately precedes the service class definition
-    8. **Dependency injection:** Dependency injection (DI) lets you keep your component classes lean and efficient. DI does not fetch data from a server, validate the user input, or log directly to the console instead they delegate such tasks to the services
+    8. **Dependency injection:** Dependencies are services or objects that a class needs to perform its function. Dependency injection, or DI, is a design pattern in which a class requests dependencies from external sources rather than creating them
     **[⬆ Back to Top](#table-of-contents)**
 
 39. ### Wild card routing
@@ -1225,24 +1226,24 @@
     | var | let | const |
     | ------ | ------ | ------|
     | Variables declared with var are in the function scope | Variables declared as let are in the block scope | Variables declared as const are in the block scope |
+    | Reassign the value Allowed | Reassign the value Allowed | Reassign the value is Not Allowed for variables, but can allow for objects  |
     | Hosting is Allowed | Hosting is Not Allowed | Hosting is Not Allowed |
-    | Reassign the value Allowed | Reassign the value Allowed | var allows in Not Allowed |
     | Redeclaration of the variable Allowed | Redeclaration of the variable Not Allowed | Redeclaration of the variable Not Allowed |
     **[⬆ Back to Top](#table-of-contents)**
 
-1. ### Question
+1. ### Pure and Impure Pipes
     **[⬆ Back to Top](#table-of-contents)**
 
-1. ### Question
+1. ### Doctype and Meta data
     **[⬆ Back to Top](#table-of-contents)**
 
-1. ### Question
+1. ### Local storage, Session storage and Cookies
     **[⬆ Back to Top](#table-of-contents)**
 
-1. ### Question
+1. ### Difference between one way data binding and two way data binding
     **[⬆ Back to Top](#table-of-contents)**
 
-1. ### Question
+1. ### Difference between angular and react js
     **[⬆ Back to Top](#table-of-contents)**
 
 1. ### Question

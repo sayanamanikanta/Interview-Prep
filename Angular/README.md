@@ -250,8 +250,7 @@
             .subscribe(val => { console.log(val)})
         }
 	
-	// The output is 2,4,6,8
-        
+	    // The output is 2,4,6,8
         ```
     2. **Reduce:**
         The reduce() method reduces an array of values down to just one value. To get the output value, it runs a reducer function on each element of the array

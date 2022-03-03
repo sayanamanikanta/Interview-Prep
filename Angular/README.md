@@ -230,6 +230,8 @@
 
 12. ### SwitchMap
     The Angular SwitchMap maps each value from the source observable into an inner observable, subscribes to it, and then starts emitting the values from it. It creates a new inner observable for every value it receives from the Source
+    
+    **Note** switchMap cancels previous HTTP requests that are still in progress, while mergeMap lets all of them finish
     **[⬆ Back to Top](#table-of-contents)**
     
 13. ### Map Reduce and Filter
@@ -247,6 +249,8 @@
             .pipe(map(val => { return val * 2}))
             .subscribe(val => { console.log(val)})
         }
+	
+	// The output is 2,4,6,8
         
         ```
     2. **Reduce:**

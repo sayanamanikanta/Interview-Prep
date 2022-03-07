@@ -56,7 +56,7 @@
 |49 | [Routing in angular](#routing-in-angular)|
 |50 | [Event loop in JavaScript](#event-loop-in-JavaScript)|
 |51 | [Let, Var and Const](#let-var-and-const)|
-
+|52 | [Destructuring](#destructuring)|
 
 
 
@@ -1234,6 +1234,23 @@
     | Redeclaration of the variable Allowed | Redeclaration of the variable Not Allowed | Redeclaration of the variable Not Allowed |
     **[⬆ Back to Top](#table-of-contents)**
 
+52. ### Destructuring
+    Destructuring is a way of extracting values into variables from data stored in objects and arrays
+    ```ts
+    const obj = {text1: 'abc', text2: 'bbb', age: 39 };
+
+    const t1 = obj.text1;
+    console.log(t1);         //Output: abc
+
+    const t2 = obj.text2;
+    console.log(t2);         //Output: bbb
+
+    const {text1: t11, text2: t12} = obj;
+    console.log(t11);         //Output: abc
+    console.log(t12);         //Output: bbb
+    ```
+    **[⬆ Back to Top](#table-of-contents)**
+
 1. ### Pure and Impure Pipes
     **[⬆ Back to Top](#table-of-contents)**
 
@@ -1247,9 +1264,6 @@
     **[⬆ Back to Top](#table-of-contents)**
 
 1. ### Difference between angular and react js
-    **[⬆ Back to Top](#table-of-contents)**
-
-1. ### Question
     **[⬆ Back to Top](#table-of-contents)**
 
 1. ### Question

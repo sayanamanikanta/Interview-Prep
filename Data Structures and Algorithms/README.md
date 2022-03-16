@@ -69,6 +69,8 @@
     const array2 = new Array("eat", "sleep");
     ```
 
+    **[⬆ Back to Top](#table-of-contents)**
+
 1. ### Stack Data Structure
     In stack data structure, elements are stored in the LIFO(Last In First Out) principle. That is, the last element stored in a stack will be removed first<br>
     It works just like a pile of plates where the last plate kept on the pile will be removed first
@@ -84,6 +86,8 @@
     **Stack Time Complexity**
     For the array-based implementation of a stack, the push and pop operations take constant time, i.e. **O(1)** 
 
+    **[⬆ Back to Top](#table-of-contents)**
+
 1. ### Queue Data Structure
     Queue data structure works in the FIFO(First In First Out) principle where first element stored in the queue will be removed first<br>
     It works just like a queue of people in the ticket counter where first person on the queue will get the ticket first
@@ -97,7 +101,9 @@
     * **Peek:** Get the value of the front of the queue without removing it
 
     **Complexity Analysis**
-    The complexity of enqueue and dequeue operations in a queue using an array is **O(1)** 
+    The complexity of enqueue and dequeue operations in a queue using an array is **O(1)**
+
+    **[⬆ Back to Top](#table-of-contents)** 
     
 
 1. ### Linked List Data Structure
@@ -124,6 +130,8 @@
 
     **Space Complexity**: O(n)
 
+    **[⬆ Back to Top](#table-of-contents)**
+
 1. ### Non-linear data structure
     Unlike linear data structures, elements in non-linear data structures are not in any sequence. Instead they are arranged in a hierarchical manner where one element will be connected to one or more elements
 
@@ -138,6 +146,8 @@
     * Adjacency Matrix
     * Adjacency List
 
+    **[⬆ Back to Top](#table-of-contents)**
+
 1. ### Trees Data Structure
     A tree data structure is a collection of vertices and edges. However, in tree data structure, there can only be one edge between two vertices
 
@@ -146,6 +156,8 @@
     * Binary Search Tree
     * AVL(Adelson-Velskii and Landis) Tree
     * B-Tree
+
+    **[⬆ Back to Top](#table-of-contents)**
 
 1. ### Question
 1. ### Question

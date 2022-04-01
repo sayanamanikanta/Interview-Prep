@@ -6,4 +6,4 @@
 |---- | ----------|
 |1 | [Angular](https://github.com/sayanamanikanta/Interview-Prep/tree/main/Angular)|
 |2 | [Data Structures and Algorithms](https://github.com/sayanamanikanta/Interview-Prep/tree/main/Data%20Structures%20and%20Algorithms)|
-|3 | [JavaScript](https://github.com/sayanamanikanta/Interview-Prep/tree/main/JavaScript)|
+|3 | [JavaScript](https://github.com/sayanamanikanta/Interview-Prep/tree/main/Javascript)|

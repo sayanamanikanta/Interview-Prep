@@ -5,7 +5,18 @@
 
 | No. | Questions |
 |---- | ----------|
-|1 | [Questions](#questions)|
+|1 | [What is an JavaScript](#what-is-an-javascript)|
+|2 | [Applications of Javascript Programming](#applications-of-javascript-programming)|
+|3 | [JavaScript Variables and Constants](#javascript-variables-and-constants)|
+|4 | [var Vs let](#var-vs-let)|
+|5 | [Data Types](#data-types)|
+|6 | [Hoisting](#hoisting)|
+|7 | [Getter and Setter](#getter-and-setter)|
+|8 | [Arrays](#arrays)|
+|9 | [JavaScript String](#javascript-string)|
+|10 | [JavaScript Number](#javascript-number)|
+|11 | [Spread Operator](#spread-operator)|
+|12 | [Set and WeakSet](#set-and-weakset)|
 --------
 
 1. ### What is an JavaScript
@@ -21,6 +32,8 @@
     * Presentations 
     * Server Applications
 
+    **[⬆ Back to Top](#table-of-contents)**
+
 1. ### JavaScript Variables and Constants
     In JavaScript, we use either **var** or **let** keyword to declare variables
     ```js
@@ -34,12 +47,16 @@
     ```
     Once a constant is initialized, we cannot change its value. Simply, a constant is a type of variable whose value cannot be changed
 
+    **[⬆ Back to Top](#table-of-contents)**
+
 
 1. ### var Vs let
     | var | let |
     | --- | --- |
     | var is used in the older versions of JavaScript | let is the new way of declaring variables starting ES6 (ES2015) |
     | var is function scoped | let is block scoped |
+
+    **[⬆ Back to Top](#table-of-contents)**
 
 1. ### Data Types
     There are eight basic data types in JavaScript. They are
@@ -52,6 +69,8 @@
     * Symbol
     * Object
 
+    **[⬆ Back to Top](#table-of-contents)**
+
 1. ### Hoisting
     Hoisting in JavaScript is a behavior in which a function or a variable can be used before declaration
 
@@ -61,6 +80,8 @@
     ```
 
     In terms of variables and constants, keyword var is hoisted and let and const does not allow hoisting.
+
+    **[⬆ Back to Top](#table-of-contents)**
 
 1. ### Getter and Setter
     In JavaScript, there are two kinds of object properties
@@ -98,6 +119,8 @@
 
         ```
 
+    **[⬆ Back to Top](#table-of-contents)**
+
 1. ### Arrays
     An array is an object that can store multiple values at once
 
@@ -122,6 +145,8 @@
     const data = [[1, 2, 3], [1, 3, 4], [4, 5, 6]];
     ```
 
+    **[⬆ Back to Top](#table-of-contents)**
+
 1. ### JavaScript String
     JavaScript string is a primitive data type that is used to work with texts
 
@@ -138,6 +163,8 @@
     * **trim()** - removes whitespace from the strings
     * **includes()** - searches for a string and returns a boolean value
     * **search()** - searches for a string and returns a position of a match
+
+    **[⬆ Back to Top](#table-of-contents)**
 
 1. ### JavaScript Number
     numbers are primitive data types in JavaScript
@@ -156,6 +183,8 @@
     * **valueof()** - returns the numbers value
     * **toLocaleString()** - returns a string with a language sensitive representation of a number
 
+    **[⬆ Back to Top](#table-of-contents)**
+
 1. ### Spread Operator
     The spread operator **...** is used to expand or spread an iterable or an array. For example
     ```js
@@ -169,10 +198,12 @@
     ```js
     const arr1 = ['one', 'two'];
     const arr2 = [...arr1, 'three', 'four', 'five'];
-    
+
     console.log(arr2); // ["one", "two", "three", "four", "five"]
     ```
 
+
+    **[⬆ Back to Top](#table-of-contents)**
 
 1. ### Set and WeakSet
     Set is similar to an array that allows us to store multiple items like numbers, strings, objects, etc. However, unlike an array, a set cannot contain duplicate values
@@ -181,6 +212,13 @@
 
     console.log(set3); // Set {1, 2}
     ```
+
+    **WeakSet**
+    The WeakSet is similar to a Set. However, WeakSet can only contain objects whereas a Set can contain any data types such as strings, numbers, objects, etc
+
+    WeakSets have methods **add()**, **delete()**, and **has()**
+
+    **[⬆ Back to Top](#table-of-contents)**
 
 1. ### Questions
 1. ### Questions

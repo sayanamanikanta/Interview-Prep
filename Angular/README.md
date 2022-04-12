@@ -1251,6 +1251,19 @@
     ```
     **[⬆ Back to Top](#table-of-contents)**
 
+1. ### Angular 13 Features
+    * Angular 13 Latest Features
+    * TypeScript 4.4 Support in angular13.
+    * Form Validation Improvements.
+    * Changes to APF.
+    * Enhancements to Angular Tests.
+    * 100% Ivy and No More Support for View Engine.
+    * End of IE11 Support.
+    * Update Component API's.
+    * Router Improvements.
+    **[⬆ Back to Top](#table-of-contents)**
+
+
 1. ### Pure and Impure Pipes
     **[⬆ Back to Top](#table-of-contents)**
 
@@ -1265,10 +1278,6 @@
 
 1. ### Difference between angular and react js
     **[⬆ Back to Top](#table-of-contents)**
-
-1. ### Question
-    **[⬆ Back to Top](#table-of-contents)**
-
 1. ### Question
     **[⬆ Back to Top](#table-of-contents)**
 

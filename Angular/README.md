@@ -58,10 +58,10 @@
 |51 | [Let, Var and Const](#let-var-and-const)|
 |52 | [Destructuring](#destructuring)|
 |53 | [Angular 13 Features](#angular-13-features)|
-|53 | [Observables in angular](#observables-in-angular)|
-|53 | [Promise in angular](#promise-in-angular)|
-|53 | [Subscribe in angular](#subscribe-in-angular)|
-|53 | [Subject in angular](#subject-in-angular)|
+|54 | [Observables in angular](#observables-in-angular)|
+|55 | [Promise in angular](#promise-in-angular)|
+|56 | [Subscribe in angular](#subscribe-in-angular)|
+|57 | [Subject in angular](#subject-in-angular)|
 
 
 

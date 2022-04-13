@@ -4,7 +4,7 @@
 ### Table of Contents
 
 | No. | Questions |
-|---- | ---------
+|---- | ---------|
 |1  | [Hoisting?](#hoisting)|
 |2  | [Closure?](#closure)|
 |3  | [Ngrx?](#ngrx)|

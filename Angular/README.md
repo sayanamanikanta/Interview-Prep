@@ -57,6 +57,11 @@
 |50 | [Event loop in JavaScript](#event-loop-in-JavaScript)|
 |51 | [Let, Var and Const](#let-var-and-const)|
 |52 | [Destructuring](#destructuring)|
+|53 | [Angular 13 Features](#angular-13-features)|
+|53 | [Observables in angular](#observables-in-angular)|
+|53 | [Promise in angular](#promise-in-angular)|
+|53 | [Subscribe in angular](#subscribe-in-angular)|
+|53 | [Subject in angular](#subject-in-angular)|
 
 
 
@@ -1261,6 +1266,34 @@
     * End of IE11 Support.
     * Update Component API's.
     * Router Improvements.
+    **[⬆ Back to Top](#table-of-contents)**
+    
+1. ### Observables in angular
+    Observable in Angular is a feature that provides support for delivering messages between different parts of your single-page application. This feature is frequently used in Angular because it is responsible for handling multiple values, asynchronous programming in Javascript, and also event handling processes
+    **[⬆ Back to Top](#table-of-contents)**
+    
+1. ### Promise in angular
+    A promise is a placeholder for a future value. It serves the same function as callbacks but has a nicer syntax and makes it easier to handle errors.<br>
+    Promises can be executed by calling the then() and catch() methods. The then() method takes two callback functions as parameters and is invoked when a promise is either resolved or rejected. The catch() method takes one callback function and is invoked when an error occurs
+
+    **[⬆ Back to Top](#table-of-contents)**
+    
+1. ### Subscribe in angular
+    Subscribe() is a method in Angular that connects the observer to observable events. Whenever any change is made in these observable, a code is executed and observes the results or changes using the subscribe method. Subscribe() is a method from the rxjs library, used internally by Angular
+    **[⬆ Back to Top](#table-of-contents)**
+    
+1. ### Subject in angular
+    A Subject is a special type of Observable that allows values to be multicasted to many Observers. The subjects are also observers because they can subscribe to another observable and get value from it, which it will multicast to all of its subscribers. Basically, a subject can act as both observable & an observer.
+
+    **[⬆ Back to Top](#table-of-contents)**
+    
+1. ### Question
+    **[⬆ Back to Top](#table-of-contents)**
+    
+1. ### Question
+    **[⬆ Back to Top](#table-of-contents)**
+    
+1. ### Question
     **[⬆ Back to Top](#table-of-contents)**
 
 

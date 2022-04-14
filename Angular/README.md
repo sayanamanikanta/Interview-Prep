@@ -4,7 +4,7 @@
 ### Table of Contents
 
 | No. | Questions |
-|---- | ---------
+|---- | --------- |
 |1  | [Hoisting?](#hoisting)|
 |2  | [Closure?](#closure)|
 |3  | [Ngrx?](#ngrx)|
@@ -1359,6 +1359,16 @@
     }
     ```
     * Insert content before, or after, the content of an element 
+    
+    | Selector | Example | Description |
+    | -------- | ------- | ----------- |
+    | ::after | p::after | Insert something after the content of each **< p >** element |
+    | ::before | p::before | Insert something before the content of each **< p >** element |
+    | ::first-letter | p::first-letter | Selects the first letter of each **< p >** element |
+    | ::first-line | p::first-line | Selects the first line of each **< p >** element |
+    | ::marker | ::marker | Selects the markers of list items |
+    | ::selection | p::selection | Selects the portion of an element that is selected by a user |
+
 
     **Pseudo-classes**: pseudo-class is used to define a special state of an element. For example, it can be used to:
     * Style an element when a user mouses over it

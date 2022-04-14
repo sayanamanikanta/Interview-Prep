@@ -1393,14 +1393,14 @@
     
 1. ### ES6 Array methods
     Some new array methods are introduced in ES6, such as
-    * Array.from(): It converts array-like values and iterable values into arrays
+    * **Array.from():** It converts array-like values and iterable values into arrays
         The general function of this method is to enable new array creation from an array-like object. It converts array-like values and iterable values (such as set and map) into arrays.
         ```js
         let name = Array.from('javaTpoint')  
 
         console.log(name)   // ['j', 'a', 'v', 'a', 'T', 'p', 'o', 'i', 'n', 't']
         ```
-    * Array.of(): It creates an instance from a variable number of arguments instead of the number of arguments or type of arguments
+    * **Array.of():** It creates an instance from a variable number of arguments instead of the number of arguments or type of arguments
         In ES5, when a single numeric value gets passed in the array constructor, then it will create an array of that size. Array.of() is a new way of creating an array which fixes this behavior of ES5.
 
         By using this method, if you are creating an array only with a single numeric value, then it will create an array only with that value instead of creating the array of that size
@@ -1410,7 +1410,7 @@
         console.log(name)   // [42]
         console.log(name.length)    // 1
         ```
-    * Array.prototype.copyWithin(): It copies the part of an array to a different location within the same array 
+    * **Array.prototype.copyWithin():** It copies the part of an array to a different location within the same array 
         It is an interesting method that is added to the library of array methods in ES6. This method copies the part of an array to a different location within the same array
         #### Syntax:
         ```js
@@ -1423,7 +1423,7 @@
         console.log(num.copyWithin(1,3,5)); // [1, 4, 5, 4, 5, 6, 7, 8, 9, 10]
         console.log(num.copyWithin(1,3)); // [1, 4, 5, 6, 7, 8, 9, 10, 9, 10]
         ```
-    * Array.prototype.find(): It finds a value from an array, based on the specific criteria that are passed to this method.
+    * **Array.prototype.find():** It finds a value from an array, based on the specific criteria that are passed to this method.
         It is another new function of ES6. It finds a value from an array, based on the specific criteria that are passed to this method. It returns the first element value that satisfies the given condition
         #### Syntax:
         ```js
@@ -1447,7 +1447,7 @@
         var result=arr.findIndex(x=>x>20);
         console.log(result)
         ```
-    * Array.prototype.entries(): It returns an array iterator object, which can be used to loop through keys and values of arrays
+    * **Array.prototype.entries():** It returns an array iterator object, which can be used to loop through keys and values of arrays
         This method returns an array iterator object, which can be used to loop through keys and values of arrays
         Entries will return an array of arrays, in which every child array is an array of [index, value].
         #### Syntax:
@@ -1474,7 +1474,7 @@
         [2, 'Blue']
         [3, 'Black']
         ```
-    * Array.prototype.keys(): It returns an array iterator object along with the keys of the array
+    * **Array.prototype.keys():** It returns an array iterator object along with the keys of the array
         This method works similarly to the Array.entries() method. As its name implies, it is used to return an array iterator object along with the keys of the array
         #### Syntax:
         ```js
@@ -1486,7 +1486,7 @@
         var show = colours.keys();
         console.log(...show);   // 0 1 2 3
         ```
-    * Array.prototype.values(): it provides the value of each key
+    * **Array.prototype.values():** it provides the value of each key
         This method is similar to Array.keys() and Array.entries() except that it provides the value of each key
         #### Syntax:
         ```js
@@ -1498,7 +1498,7 @@
         var show = colours.values();
         console.log(...show);   // Red Yellow Blue Black
         ```
-    * Array.prototype.fill(): It fills the specified array elements with a static value
+    * **Array.prototype.fill():** It fills the specified array elements with a static value
         This method fills the specified array elements with a static value. The value can be used to fill a part of an array or to fill the entire array. It modifies the original array
         #### Syntax:
         ```js

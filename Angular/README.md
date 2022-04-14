@@ -536,9 +536,9 @@
 
 19. ### Observable vs Promises
     Promises and Observables provide us with abstractions that help us deal with the asynchronous nature of our applications<br>
-    **Promise**
-        A Promise handles a single event when an async operation completes or fails
-    **Observable**
+    **Promise**<br>
+        A Promise handles a single event when an async operation completes or fails<br>
+    **Observable**<br>
         An Observable is like a Stream (in many languages) and allows to pass zero or more events where the callback is called for each event
     **[⬆ Back to Top](#table-of-contents)**
 
@@ -1514,7 +1514,7 @@
     
 1. ### Form group and Form array
     **FormGroup**
-    FormGroup is one of the three fundamental building blocks used to define forms in Angular, along with FormControl and FormArray . When instantiating a FormGroup , pass in a collection of child controls as the first argument. The key for each child registers the name for the control
+    FormGroup is one of the three fundamental building blocks used to define forms in Angular, along with FormControl and FormArray . When instantiating a FormGroup , pass in a collection of child controls as the first argument. The key for each child registers the name for the control<br>
     **FormArray**
     The FormArray is a way to Manage collection of Form controls in Angular. The controls can be FormGroup, FormControl, or another FormArray. Because it is implemented as Array, it makes it easier dynamically add controls
     **[⬆ Back to Top](#table-of-contents)**

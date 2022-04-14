@@ -62,6 +62,24 @@
 |55 | [Promise in angular](#promise-in-angular)|
 |56 | [Subscribe in angular](#subscribe-in-angular)|
 |57 | [Subject in angular](#subject-in-angular)|
+|57 | [Behaviorsubject in angular](#behaviorsubject-in-angular)|
+|57 | [Resolvers in angular](#resolvers-in-angular)|
+|** | [HostListener in angular](#hostlistener-in-angular)|
+|** | [HostBinding in angular](#hostbinding-in-angular)|
+|** | [Position absolute and Position relative](#position-absolute-and-position-relative)|
+|** | [Pseudo-Elements and Pseudo-classes](#pseudo-elements-and-pseudo-classes)|
+|** | [ES6 Array methods](#es6-array-methods)|
+|** | [Form group and Form array](#form-group-and-form-array)|
+|** | [question](#)|
+|** | [question](#)|
+|** | [question](#)|
+|** | [question](#)|
+|** | [question](#)|
+|** | [question](#)|
+|** | [question](#)|
+|** | [question](#)|
+|** | [question](#)|
+|** | [question](#)|
 
 
 
@@ -1287,13 +1305,208 @@
 
     **[⬆ Back to Top](#table-of-contents)**
     
-1. ### Question
+1. ### Behaviorsubject in angular
+    BehaviorSubject is both observer and type of observable. BehaviorSubject always need an initial/default value. Every observer on subscribe gets current value. Current value is either latest value emitted by source observable using next() method or initial/default value<br>
+    BehaviorSubject is a type of subject, a subject is a special type of observable so you can subscribe to messages like any other observable. The unique features of BehaviorSubject are:
+    * It needs an initial value as it must always return a value on subscription even if it hasn't received a next()
+    * Upon subscription, it returns the last value of the subject. A regular observable only triggers when it receives an onnext
+    * at any point, you can retrieve the last value of the subject in a non-observable code using the getValue() method
     **[⬆ Back to Top](#table-of-contents)**
     
-1. ### Question
+1. ### Resolvers in angular
+    Angular Resolver is used for pre-fetching some of the data when the user is navigating from one route to another. It can be defined as a smooth approach for enhancing user experience by loading data before the user navigates to a particular component
     **[⬆ Back to Top](#table-of-contents)**
     
-1. ### Question
+1. ### HostListener in angular
+    In Angular, the @HostListener() function decorator allows you to handle events of the host element in the directive class<br>
+    Let's take the following requirement: when you hover you mouse over the host element, only the color of the host element should change. In addition, when the mouse is gone, the color of the host element should change to its default color. To do this, you need to handle events raised on the host element in the directive class. In Angular, you do this using @HostListener() 
+    ```ts
+    @HostListener('mouseover') onMouseOver() {
+        this.ChangeBgColor('red');
+    }
+    ```
+
+    **[⬆ Back to Top](#table-of-contents)**
+    
+1. ### HostBinding in angular
+    In Angular, the @HostBinding() function decorator allows you to set the properties of the host element from the directive class<br>
+    Let's say you want to change the style properties such as height, width, color, margin, border, etc., or any other internal properties of the host element in the directive class. Here, you'd need to use the @HostBinding() decorator function to access these properties on the host element and assign a value to it in directive class.
+    ```ts
+    @HostBinding('style.border') border: string;
+
+    @HostListener('mouseover') onMouseOver() {
+        this.border = '5px solid green';
+    }
+    ```
+
+    **[⬆ Back to Top](#table-of-contents)**
+    
+1. ### position absolute and position relative
+    **position: relative** places an element relative to its current position without changing the layout around it, whereas **position: absolute** places an element relative to its parent's position and changing the layout around it
+    **[⬆ Back to Top](#table-of-contents)**
+    
+1. ### Pseudo-Elements and Pseudo-classes
+    **Pseudo-Elements**: pseudo-element is used to style specified parts of an element. For example, it can be used to
+    * Style the first letter, or line, of an element
+    ```css
+    p::first-line {
+        color: #ff0000;
+        font-variant: small-caps;
+    }
+    p::first-letter {
+        color: #ff0000;
+        font-size: xx-large;
+    }
+    ```
+    * Insert content before, or after, the content of an element 
+
+    **Pseudo-classes**: pseudo-class is used to define a special state of an element. For example, it can be used to:
+    * Style an element when a user mouses over it
+    * Style visited and unvisited links differently
+    * Style an element when it gets focus
+    ```css
+    a:link {
+        color: #FF0000;
+    }
+    a:visited {
+        color: #00FF00;
+    }
+    a:hover {
+        color: #FF00FF;
+    }
+    a:active {
+        color: #0000FF;
+    }
+    ```
+
+    **[⬆ Back to Top](#table-of-contents)**
+    
+1. ### ES6 Array methods
+    Some new array methods are introduced in ES6, such as
+    * Array.from(): It converts array-like values and iterable values into arrays
+        The general function of this method is to enable new array creation from an array-like object. It converts array-like values and iterable values (such as set and map) into arrays.
+        ```js
+        let name = Array.from('javaTpoint')  
+
+        console.log(name)   // ['j', 'a', 'v', 'a', 'T', 'p', 'o', 'i', 'n', 't']
+        ```
+    * Array.of(): It creates an instance from a variable number of arguments instead of the number of arguments or type of arguments
+        In ES5, when a single numeric value gets passed in the array constructor, then it will create an array of that size. Array.of() is a new way of creating an array which fixes this behavior of ES5.
+
+        By using this method, if you are creating an array only with a single numeric value, then it will create an array only with that value instead of creating the array of that size
+        ```js
+        let name = Array.of(42)
+
+        console.log(name)   // [42]
+        console.log(name.length)    // 1
+        ```
+    * Array.prototype.copyWithin(): It copies the part of an array to a different location within the same array 
+        It is an interesting method that is added to the library of array methods in ES6. This method copies the part of an array to a different location within the same array
+        #### Syntax:
+        ```js
+        array.copyWithin(target, start, end)
+        ```
+        #### Eg:
+        ```js
+        const num = [1,2,3,4,5,6,7,8,9,10];  
+
+        console.log(num.copyWithin(1,3,5)); // [1, 4, 5, 4, 5, 6, 7, 8, 9, 10]
+        console.log(num.copyWithin(1,3)); // [1, 4, 5, 6, 7, 8, 9, 10, 9, 10]
+        ```
+    * Array.prototype.find(): It finds a value from an array, based on the specific criteria that are passed to this method.
+        It is another new function of ES6. It finds a value from an array, based on the specific criteria that are passed to this method. It returns the first element value that satisfies the given condition
+        #### Syntax:
+        ```js
+        array.find(callback(currentValue, index, arr),thisValue) 
+        ```
+        #### Eg:
+        ```js
+        var arr=[5,22,19,25,34];
+        var result=arr.find(x=>x>20);
+        console.log(result);    // 22
+        ```
+    * **Array.prototype.findIndex():** The Array.prototype.findIndex() returns the index of the first element of the given array that satisfies the given condition<br>
+        The Array.prototype.findIndex() method returns the index of the first element of the given array that satisfies the given condition. If no element satisfies the condition, then it returns -1.
+        #### Syntax:
+        ```js
+        array.findIndex(callback(value,index,arr),thisArg)
+        ```
+        #### Eg:
+        ```js
+        var arr=[5,22,19,25,34];
+        var result=arr.findIndex(x=>x>20);
+        console.log(result)
+        ```
+    * Array.prototype.entries(): It returns an array iterator object, which can be used to loop through keys and values of arrays
+        This method returns an array iterator object, which can be used to loop through keys and values of arrays
+        Entries will return an array of arrays, in which every child array is an array of [index, value].
+        #### Syntax:
+        ```js
+        array.entries() 
+        ```
+        #### Eg:
+        ```js
+        var colours = ["Red", "Yellow", "Blue", "Black"];
+        var show = colours.entries();
+
+        // case 1
+        for (i of show) {  
+            console.log(i);  
+        }  
+
+        OR
+        // case 2
+        console.log(...show);
+
+        OUTPUT::
+        [0, 'Red']
+        [1, 'Yellow']
+        [2, 'Blue']
+        [3, 'Black']
+        ```
+    * Array.prototype.keys(): It returns an array iterator object along with the keys of the array
+        This method works similarly to the Array.entries() method. As its name implies, it is used to return an array iterator object along with the keys of the array
+        #### Syntax:
+        ```js
+        array.keys() 
+        ```
+        #### Eg:
+        ```js
+        var colours = ["Red", "Yellow", "Blue", "Black"];
+        var show = colours.keys();
+        console.log(...show);   // 0 1 2 3
+        ```
+    * Array.prototype.values(): it provides the value of each key
+        This method is similar to Array.keys() and Array.entries() except that it provides the value of each key
+        #### Syntax:
+        ```js
+        array.values() 
+        ```
+        #### Eg:
+        ```js
+        var colours = ["Red", "Yellow", "Blue", "Black"];
+        var show = colours.values();
+        console.log(...show);   // Red Yellow Blue Black
+        ```
+    * Array.prototype.fill(): It fills the specified array elements with a static value
+        This method fills the specified array elements with a static value. The value can be used to fill a part of an array or to fill the entire array. It modifies the original array
+        #### Syntax:
+        ```js
+        array.fill(value, start, end)  
+        ```
+        #### Eg:
+        ```js
+        var colours = ["Red", "Yellow", "Blue", "Black"];
+        var show = colours.fill("Green",2,4);  
+        console.log(...show);   // Red Yellow Green Green
+        ```
+    **[⬆ Back to Top](#table-of-contents)**
+    
+1. ### Form group and Form array
+    **FormGroup**
+    FormGroup is one of the three fundamental building blocks used to define forms in Angular, along with FormControl and FormArray . When instantiating a FormGroup , pass in a collection of child controls as the first argument. The key for each child registers the name for the control
+    **FormArray**
+    The FormArray is a way to Manage collection of Form controls in Angular. The controls can be FormGroup, FormControl, or another FormArray. Because it is implemented as Array, it makes it easier dynamically add controls
     **[⬆ Back to Top](#table-of-contents)**
 
 

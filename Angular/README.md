@@ -1517,6 +1517,41 @@
     The FormArray is a way to Manage collection of Form controls in Angular. The controls can be FormGroup, FormControl, or another FormArray. Because it is implemented as Array, it makes it easier dynamically add controls
     **[⬆ Back to Top](#table-of-contents)**
 
+1. ### map and foreach difference
+    The main difference between map and forEach is that the map method returns a new array by applying the callback function on each element of an array, while the forEach method doesn't return anything
+    
+    **[⬆ Back to Top](#table-of-contents)**
+
+
+1. ### Question
+    **[⬆ Back to Top](#table-of-contents)**
+1. ### Question
+    **[⬆ Back to Top](#table-of-contents)**
+1. ### Question
+    **[⬆ Back to Top](#table-of-contents)**
+1. ### Question
+    **[⬆ Back to Top](#table-of-contents)**
+1. ### Question
+    **[⬆ Back to Top](#table-of-contents)**
+1. ### Question
+    **[⬆ Back to Top](#table-of-contents)**
+1. ### Question
+    **[⬆ Back to Top](#table-of-contents)**
+1. ### Question
+    **[⬆ Back to Top](#table-of-contents)**
+1. ### Question
+    **[⬆ Back to Top](#table-of-contents)**
+1. ### Question
+    **[⬆ Back to Top](#table-of-contents)**
+1. ### Question
+    **[⬆ Back to Top](#table-of-contents)**
+1. ### Question
+    **[⬆ Back to Top](#table-of-contents)**
+1. ### Question
+    **[⬆ Back to Top](#table-of-contents)**
+1. ### Question
+    **[⬆ Back to Top](#table-of-contents)**
+
 
 1. ### Pure and Impure Pipes
     **[⬆ Back to Top](#table-of-contents)**
